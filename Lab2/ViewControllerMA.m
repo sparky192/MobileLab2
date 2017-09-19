@@ -6,13 +6,13 @@
 //  Copyright © 2017 Mandar Phadate. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "ViewControllerMA.h"
 
-@interface ViewController ()
+@interface ViewControllerMA ()
 
 @end
 
-@implementation ViewController
+@implementation ViewControllerMA
 
 - (void)viewDidLoad {
     [super viewDidLoad];
