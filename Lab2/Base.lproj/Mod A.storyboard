@@ -1,38 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vrb-Ji-x3O">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View ControllerMA-->
-        <scene sceneID="tne-QT-ifu">
+        <!--GLKit View Controller-->
+        <scene sceneID="Vf3-Cl-ftn">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewControllerMA" sceneMemberID="viewController">
+                <glkViewController preferredFramesPerSecond="30" id="vrb-Ji-x3O" customClass="ViewControllerMA" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="JY7-Ot-62u"/>
+                        <viewControllerLayoutGuide type="bottom" id="p6V-rJ-fSg"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="09f-hW-IkQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mod A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdI-vy-PD0">
-                                <rect key="frame" x="166" y="323" width="50" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6h-sw-DXJ" colorLabel="IBBuiltInLabel-Red">
+                                <rect key="frame" x="16" y="20" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YY-vR-s4D">
+                                <rect key="frame" x="16" y="49" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4_7.fullscreen"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="3YY-vR-s4D" firstAttribute="leading" secondItem="09f-hW-IkQ" secondAttribute="leadingMargin" id="7ce-ih-ceK"/>
+                            <constraint firstItem="3YY-vR-s4D" firstAttribute="trailing" secondItem="09f-hW-IkQ" secondAttribute="trailingMargin" id="Akr-jY-HyA"/>
+                            <constraint firstItem="N6h-sw-DXJ" firstAttribute="top" secondItem="JY7-Ot-62u" secondAttribute="bottom" id="M8o-yN-Xtm"/>
+                            <constraint firstItem="N6h-sw-DXJ" firstAttribute="trailing" secondItem="09f-hW-IkQ" secondAttribute="trailingMargin" id="eO6-7q-BDp"/>
+                            <constraint firstItem="3YY-vR-s4D" firstAttribute="top" secondItem="N6h-sw-DXJ" secondAttribute="bottom" constant="8" id="pC8-cZ-gV4"/>
+                            <constraint firstItem="N6h-sw-DXJ" firstAttribute="leading" secondItem="09f-hW-IkQ" secondAttribute="leadingMargin" id="rst-ri-leG"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="delegate" destination="vrb-Ji-x3O" id="hq7-eO-2Tc"/>
+                        </connections>
+                    </glkView>
+                    <connections>
+                        <outlet property="Freq2" destination="3YY-vR-s4D" id="373-eo-rzn"/>
+                        <outlet property="FreqLabel" destination="N6h-sw-DXJ" id="bUF-la-L5E"/>
+                    </connections>
+                </glkViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q6J-Ab-sMD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1577" y="-322"/>
+            <point key="canvasLocation" x="1172" y="126.38680659670166"/>
         </scene>
     </scenes>
 </document>

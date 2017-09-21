@@ -19,6 +19,15 @@
 		9B05E96E1F7170DF00032F19 /* ViewControllerMB.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B05E96D1F7170DF00032F19 /* ViewControllerMB.m */; };
 		9B05E9711F71738600032F19 /* Mod A.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B05E96F1F71738600032F19 /* Mod A.storyboard */; };
 		9B05E9731F71739600032F19 /* Mod B.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B05E9721F71739600032F19 /* Mod B.storyboard */; };
+		9B33CFB71F72DB6300EF88A0 /* SMUGraphHelper.h in Sources */ = {isa = PBXBuildFile; fileRef = 9B33CFB51F72DB6300EF88A0 /* SMUGraphHelper.h */; };
+		9B33CFB81F72DB6300EF88A0 /* SMUGraphHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33CFB61F72DB6300EF88A0 /* SMUGraphHelper.m */; };
+		9BA03A301F72B160000C0509 /* BufferedOverlapQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA03A211F72B160000C0509 /* BufferedOverlapQueue.m */; };
+		9BA03A311F72B160000C0509 /* CircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA03A231F72B160000C0509 /* CircularBuffer.m */; };
+		9BA03A321F72B160000C0509 /* CubicSpline.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA03A251F72B160000C0509 /* CubicSpline.m */; };
+		9BA03A331F72B160000C0509 /* DataBufferBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA03A271F72B160000C0509 /* DataBufferBlock.m */; };
+		9BA03A341F72B160000C0509 /* FFTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA03A291F72B160000C0509 /* FFTHelper.m */; };
+		9BA03A351F72B160000C0509 /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA03A2B1F72B160000C0509 /* Novocaine.m */; };
+		9BA03A361F72B160000C0509 /* PeakFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA03A2D1F72B160000C0509 /* PeakFinder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +70,22 @@
 		9B05E96D1F7170DF00032F19 /* ViewControllerMB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerMB.m; sourceTree = "<group>"; };
 		9B05E9701F71738600032F19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Mod A.storyboard"; sourceTree = "<group>"; };
 		9B05E9721F71739600032F19 /* Mod B.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Mod B.storyboard"; sourceTree = "<group>"; };
+		9B33CFB51F72DB6300EF88A0 /* SMUGraphHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMUGraphHelper.h; sourceTree = "<group>"; };
+		9B33CFB61F72DB6300EF88A0 /* SMUGraphHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMUGraphHelper.m; sourceTree = "<group>"; };
+		9BA03A201F72B160000C0509 /* BufferedOverlapQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BufferedOverlapQueue.h; sourceTree = "<group>"; };
+		9BA03A211F72B160000C0509 /* BufferedOverlapQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BufferedOverlapQueue.m; sourceTree = "<group>"; };
+		9BA03A221F72B160000C0509 /* CircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularBuffer.h; sourceTree = "<group>"; };
+		9BA03A231F72B160000C0509 /* CircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularBuffer.m; sourceTree = "<group>"; };
+		9BA03A241F72B160000C0509 /* CubicSpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubicSpline.h; sourceTree = "<group>"; };
+		9BA03A251F72B160000C0509 /* CubicSpline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CubicSpline.m; sourceTree = "<group>"; };
+		9BA03A261F72B160000C0509 /* DataBufferBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBufferBlock.h; sourceTree = "<group>"; };
+		9BA03A271F72B160000C0509 /* DataBufferBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBufferBlock.m; sourceTree = "<group>"; };
+		9BA03A281F72B160000C0509 /* FFTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTHelper.h; sourceTree = "<group>"; };
+		9BA03A291F72B160000C0509 /* FFTHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFTHelper.m; sourceTree = "<group>"; };
+		9BA03A2A1F72B160000C0509 /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Novocaine.h; sourceTree = "<group>"; };
+		9BA03A2B1F72B160000C0509 /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Novocaine.m; sourceTree = "<group>"; };
+		9BA03A2C1F72B160000C0509 /* PeakFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeakFinder.h; sourceTree = "<group>"; };
+		9BA03A2D1F72B160000C0509 /* PeakFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeakFinder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,13 +136,29 @@
 		9B05E9351F716ECD00032F19 /* Lab2 */ = {
 			isa = PBXGroup;
 			children = (
+				9B33CFB51F72DB6300EF88A0 /* SMUGraphHelper.h */,
+				9B33CFB61F72DB6300EF88A0 /* SMUGraphHelper.m */,
 				9B05E9391F716ECD00032F19 /* AppDelegate.h */,
 				9B05E93A1F716ECD00032F19 /* AppDelegate.m */,
 				9B05E93C1F716ECD00032F19 /* ViewControllerMA.h */,
+				9B05E93D1F716ECD00032F19 /* ViewControllerMA.m */,
 				9B05E96C1F7170DF00032F19 /* ViewControllerMB.h */,
 				9B05E96D1F7170DF00032F19 /* ViewControllerMB.m */,
-				9B05E93D1F716ECD00032F19 /* ViewControllerMA.m */,
 				9B05E93F1F716ECD00032F19 /* Main.storyboard */,
+				9BA03A201F72B160000C0509 /* BufferedOverlapQueue.h */,
+				9BA03A211F72B160000C0509 /* BufferedOverlapQueue.m */,
+				9BA03A221F72B160000C0509 /* CircularBuffer.h */,
+				9BA03A231F72B160000C0509 /* CircularBuffer.m */,
+				9BA03A241F72B160000C0509 /* CubicSpline.h */,
+				9BA03A251F72B160000C0509 /* CubicSpline.m */,
+				9BA03A261F72B160000C0509 /* DataBufferBlock.h */,
+				9BA03A271F72B160000C0509 /* DataBufferBlock.m */,
+				9BA03A281F72B160000C0509 /* FFTHelper.h */,
+				9BA03A291F72B160000C0509 /* FFTHelper.m */,
+				9BA03A2A1F72B160000C0509 /* Novocaine.h */,
+				9BA03A2B1F72B160000C0509 /* Novocaine.m */,
+				9BA03A2C1F72B160000C0509 /* PeakFinder.h */,
+				9BA03A2D1F72B160000C0509 /* PeakFinder.m */,
 				9B05E96F1F71738600032F19 /* Mod A.storyboard */,
 				9B05E9721F71739600032F19 /* Mod B.storyboard */,
 				9B05E9691F7170A200032F19 /* TableViewController.h */,
@@ -292,7 +333,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B33CFB71F72DB6300EF88A0 /* SMUGraphHelper.h in Sources */,
+				9B33CFB81F72DB6300EF88A0 /* SMUGraphHelper.m in Sources */,
+				9BA03A361F72B160000C0509 /* PeakFinder.m in Sources */,
+				9BA03A311F72B160000C0509 /* CircularBuffer.m in Sources */,
+				9BA03A321F72B160000C0509 /* CubicSpline.m in Sources */,
+				9BA03A341F72B160000C0509 /* FFTHelper.m in Sources */,
 				9B05E96E1F7170DF00032F19 /* ViewControllerMB.m in Sources */,
+				9BA03A351F72B160000C0509 /* Novocaine.m in Sources */,
+				9BA03A331F72B160000C0509 /* DataBufferBlock.m in Sources */,
+				9BA03A301F72B160000C0509 /* BufferedOverlapQueue.m in Sources */,
 				9B05E93E1F716ECD00032F19 /* ViewControllerMA.m in Sources */,
 				9B05E93B1F716ECD00032F19 /* AppDelegate.m in Sources */,
 				9B05E9381F716ECD00032F19 /* main.m in Sources */,
@@ -538,6 +588,7 @@
 				9B05E9621F716ECD00032F19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9B05E9631F716ECD00032F19 /* Build configuration list for PBXNativeTarget "Lab2Tests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +597,7 @@
 				9B05E9651F716ECD00032F19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9B05E9661F716ECD00032F19 /* Build configuration list for PBXNativeTarget "Lab2UITests" */ = {
 			isa = XCConfigurationList;
@@ -554,6 +606,7 @@
 				9B05E9681F716ECD00032F19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
