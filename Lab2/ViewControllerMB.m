@@ -19,6 +19,8 @@
 
 
 @interface ViewControllerMB ()
+@property (weak, nonatomic) IBOutlet UIView *settingsView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *settingsHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *FreqLabel;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UILabel *dopplerLabel;
@@ -35,6 +37,7 @@
 @property (strong, nonatomic)PeakFinder *finder;
 @property (weak, nonatomic) IBOutlet UILabel *detectedFreq;
 @property (nonatomic) float ampCutoff;
+@property BOOL isShowing;
 
 
 @end
@@ -42,6 +45,7 @@
 @implementation ViewControllerMB
 @synthesize ampCutoff;
 @synthesize res;
+@synthesize isShowing;
 
 -(Novocaine*)audioManager{
     if(!_audioManager){
@@ -92,7 +96,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self prepareLabel];
+    [self.settingsView.subviews setValue:@YES forKeyPath:@"hidden"];
+    isShowing = NO;
     self.ampCutoff = 0;
     // Do any additional setup after loading the view.
     [self updateFrequencyInKhz:15]; // mid C
@@ -134,12 +139,12 @@
     [self.audioManager pause];
 }
 
--(void) prepareLabel {
-    self.FreqLabel.textColor = [UIColor whiteColor];
-    self.dopplerLabel.textColor = [UIColor whiteColor];
-    self.detectedFreq.textColor = [UIColor whiteColor];
-    self.ampCutoffLabel.textColor = [UIColor whiteColor];
-}
+//-(void) prepareLabel {
+//    self.FreqLabel.textColor = [UIColor whiteColor];
+//    self.dopplerLabel.textColor = [UIColor whiteColor];
+//    self.detectedFreq.textColor = [UIColor whiteColor];
+//    self.ampCutoffLabel.textColor = [UIColor whiteColor];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -230,14 +235,47 @@
     self.ampCutoffLabel.text = [NSString stringWithFormat:@"Cutoff Amp: %f",self.ampCutoff];
  }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)viewSlideDown {
+    [UIView animateWithDuration:0.3
+                          delay: 0.0
+                        options: UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         [UIView setAnimationRepeatCount:0];
+                         [UIView setAnimationRepeatAutoreverses:NO];
+                         self.settingsHeightConstraint.constant = 225;
+                         self.settingsView.frame= CGRectMake(50,250,72,72);
+                     }
+                     completion: ^(BOOL finished) {
+                         [self.settingsView.subviews setValue:@NO forKeyPath:@"hidden"];
+                     }];
 }
-*/
+
+-(void)viewSlideUp {
+    [UIView animateWithDuration:0.3
+                          delay: 0.0
+                        options: UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         [UIView setAnimationRepeatCount:0];
+                         [UIView setAnimationRepeatAutoreverses:NO];
+                         self.settingsHeightConstraint.constant = 0;
+                         self.settingsView.frame= CGRectMake(0,100,0,0);
+                     }
+                     completion: ^(BOOL finished) {
+                         
+                     }];
+}
+
+- (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    if (!isShowing) {
+        [self viewSlideDown];
+        isShowing = YES;
+        
+    } else {
+        [self.settingsView.subviews setValue:@YES forKeyPath:@"hidden"];
+        [self viewSlideUp];
+        isShowing = NO;
+    }
+}
 
 @end

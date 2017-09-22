@@ -19,18 +19,21 @@
 
 
 @interface ViewControllerMA ()
+@property (weak, nonatomic) IBOutlet UIView *settingsView;
 @property (strong, nonatomic) Novocaine *audioManager;
 @property (weak, nonatomic) IBOutlet UILabel *FreqLabel;
 @property (weak, nonatomic) IBOutlet UILabel *Freq2;
 @property (weak, nonatomic) IBOutlet UISlider *ampSlider;
 @property (strong, nonatomic) CircularBuffer *buffer;
 @property (strong, nonatomic) SMUGraphHelper *graphHelper;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *settingsHeightConstraint;
 @property (strong, nonatomic) FFTHelper *fftHelper;
 @property(strong, nonatomic)PeakFinder *finder;
 @property float freq;
 @property float mag;
 @property float maxMag;
 @property BOOL lock;
+@property BOOL isShowing;
 @end
 
 
@@ -40,7 +43,7 @@
 @synthesize mag;
 @synthesize lock;
 @synthesize maxMag;
-
+@synthesize isShowing;
 
 #pragma mark Lazy Instantiation
 -(Novocaine*)audioManager{
@@ -91,9 +94,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    CGFloat angel = -(M_PI/2);
-    self.ampSlider.transform = CGAffineTransformMakeRotation(angel);
+    [self.settingsView.subviews setValue:@YES forKeyPath:@"hidden"];
     lock = NO;
+    isShowing = NO;
     
     [self.graphHelper setScreenBoundsBottomHalf];
     
@@ -205,6 +208,51 @@
         mag = 0;
     }
     NSLog(@"Toggle : %d",lock);
+}
+
+
+
+-(void)viewSlideDown {
+    [UIView animateWithDuration:0.3
+                          delay: 0.0
+                        options: UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         [UIView setAnimationRepeatCount:0];
+                         [UIView setAnimationRepeatAutoreverses:NO];
+                         self.settingsHeightConstraint.constant = 191;
+                         self.settingsView.frame= CGRectMake(50,250,72,72);
+                     }
+                     completion: ^(BOOL finished) {
+                          [self.settingsView.subviews setValue:@NO forKeyPath:@"hidden"];
+                     }];
+}
+
+-(void)viewSlideUp {
+    [UIView animateWithDuration:0.3
+                          delay: 0.0
+                        options: UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         [UIView setAnimationRepeatCount:0];
+                         [UIView setAnimationRepeatAutoreverses:NO];
+                         self.settingsHeightConstraint.constant = 0;
+                         self.settingsView.frame= CGRectMake(0,100,0,0);
+                     }
+                     completion: ^(BOOL finished) {
+                         
+                     }];
+}
+
+- (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    if (!isShowing) {
+        [self viewSlideDown];
+        isShowing = YES;
+        
+    } else {
+        [self.settingsView.subviews setValue:@YES forKeyPath:@"hidden"];
+        [self viewSlideUp];
+        isShowing = NO;
+    }
 }
 
 @end
