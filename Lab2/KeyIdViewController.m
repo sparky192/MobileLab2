@@ -88,7 +88,6 @@
         [weakSelf.buffer addNewFloatData:data withNumSamples:numFrames];
     }];
     
-    [self.audioManager play];
 
     
 }

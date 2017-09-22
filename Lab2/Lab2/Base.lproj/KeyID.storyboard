@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GvY-hd-RLP">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--GLKit View Controller-->
+        <scene sceneID="saD-06-EIu">
+            <objects>
+                <glkViewController preferredFramesPerSecond="30" id="GvY-hd-RLP" customClass="KeyIdViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ezq-dz-Rd1"/>
+                        <viewControllerLayoutGuide type="bottom" id="eRB-Ys-OHZ"/>
+                    </layoutGuides>
+                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="Ae1-Ru-cgY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1z-Ap-wuK">
+                                <rect key="frame" x="164" y="178" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="toggle:" destination="GvY-hd-RLP" eventType="touchUpInside" id="Lzg-lb-k7w"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for sound sample" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeS-LE-L60">
+                                <rect key="frame" x="16" y="149" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Key Played" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5N-m4-8BF">
+                                <rect key="frame" x="16" y="120" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Z1z-Ap-wuK" firstAttribute="centerX" secondItem="Ae1-Ru-cgY" secondAttribute="centerX" id="Lu2-ps-YCP"/>
+                            <constraint firstItem="IeS-LE-L60" firstAttribute="trailing" secondItem="Ae1-Ru-cgY" secondAttribute="trailingMargin" id="NL8-UZ-bvt"/>
+                            <constraint firstItem="IeS-LE-L60" firstAttribute="leading" secondItem="Ae1-Ru-cgY" secondAttribute="leadingMargin" id="Tty-sh-AoV"/>
+                            <constraint firstItem="c5N-m4-8BF" firstAttribute="trailing" secondItem="Ae1-Ru-cgY" secondAttribute="trailingMargin" id="Yj8-vX-tZN"/>
+                            <constraint firstItem="IeS-LE-L60" firstAttribute="top" secondItem="c5N-m4-8BF" secondAttribute="bottom" constant="8" id="aTY-LK-bh7"/>
+                            <constraint firstItem="c5N-m4-8BF" firstAttribute="leading" secondItem="Ae1-Ru-cgY" secondAttribute="leadingMargin" id="aix-8m-0yE"/>
+                            <constraint firstItem="c5N-m4-8BF" firstAttribute="top" secondItem="Ezq-dz-Rd1" secondAttribute="bottom" constant="100" id="ciR-Uh-sR6"/>
+                            <constraint firstItem="Z1z-Ap-wuK" firstAttribute="top" secondItem="IeS-LE-L60" secondAttribute="bottom" constant="8" id="wKP-Uq-BTB"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="delegate" destination="GvY-hd-RLP" id="fDE-8l-CWJ"/>
+                        </connections>
+                    </glkView>
+                    <connections>
+                        <outlet property="keyLabel" destination="IeS-LE-L60" id="ba5-IM-9PU"/>
+                    </connections>
+                </glkViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LMX-hr-D9n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2090" y="716"/>
+        </scene>
+    </scenes>
+</document>
