@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6OF-GQ-j4h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6OF-GQ-j4h">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -65,23 +65,53 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlq-bs-FZJ">
+                                <rect key="frame" x="16" y="124" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOv-fF-aiA">
+                                <rect key="frame" x="16" y="153" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-50" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="pLo-rZ-JIq">
+                                <rect key="frame" x="14" y="182" width="347" height="31"/>
+                                <connections>
+                                    <action selector="changedAmpCutoff:" destination="6OF-GQ-j4h" eventType="valueChanged" id="pKE-bt-2nB"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="cOv-fF-aiA" firstAttribute="top" secondItem="qlq-bs-FZJ" secondAttribute="bottom" constant="8" id="0qJ-j8-ue9"/>
                             <constraint firstItem="Pyf-c7-95z" firstAttribute="trailing" secondItem="046-Sm-77R" secondAttribute="trailingMargin" id="23w-r3-Zcd"/>
                             <constraint firstItem="WQl-ba-XID" firstAttribute="trailing" secondItem="046-Sm-77R" secondAttribute="trailingMargin" id="4mo-aC-Rez"/>
+                            <constraint firstItem="qlq-bs-FZJ" firstAttribute="trailing" secondItem="046-Sm-77R" secondAttribute="trailingMargin" id="8af-c3-Iaa"/>
                             <constraint firstItem="WQl-ba-XID" firstAttribute="top" secondItem="5cO-Lu-b04" secondAttribute="bottom" constant="8" id="ExZ-gc-SoO"/>
                             <constraint firstItem="5cO-Lu-b04" firstAttribute="top" secondItem="3ab-cO-ozd" secondAttribute="bottom" constant="8" id="JMZ-Sd-hQI"/>
+                            <constraint firstItem="pLo-rZ-JIq" firstAttribute="top" secondItem="cOv-fF-aiA" secondAttribute="bottom" constant="8" id="L9X-pe-QJv"/>
+                            <constraint firstItem="qlq-bs-FZJ" firstAttribute="leading" secondItem="046-Sm-77R" secondAttribute="leadingMargin" id="NhY-ph-gKg"/>
                             <constraint firstItem="Pyf-c7-95z" firstAttribute="top" secondItem="WQl-ba-XID" secondAttribute="bottom" constant="8" id="Xkv-r7-js6"/>
                             <constraint firstItem="Pyf-c7-95z" firstAttribute="leading" secondItem="046-Sm-77R" secondAttribute="leadingMargin" id="ar9-03-ud0"/>
                             <constraint firstItem="5cO-Lu-b04" firstAttribute="leading" secondItem="046-Sm-77R" secondAttribute="leadingMargin" id="b40-1K-Nif"/>
                             <constraint firstItem="5cO-Lu-b04" firstAttribute="trailing" secondItem="046-Sm-77R" secondAttribute="trailingMargin" id="bgg-Xe-sSm"/>
+                            <constraint firstItem="pLo-rZ-JIq" firstAttribute="leading" secondItem="046-Sm-77R" secondAttribute="leadingMargin" id="cOC-VR-gpb"/>
                             <constraint firstItem="WQl-ba-XID" firstAttribute="leading" secondItem="046-Sm-77R" secondAttribute="leadingMargin" id="cnt-0F-KHX"/>
+                            <constraint firstItem="pLo-rZ-JIq" firstAttribute="trailing" secondItem="046-Sm-77R" secondAttribute="trailingMargin" id="e7Q-wN-gAw"/>
+                            <constraint firstItem="cOv-fF-aiA" firstAttribute="leading" secondItem="046-Sm-77R" secondAttribute="leadingMargin" id="eyL-FR-y1f"/>
+                            <constraint firstItem="cOv-fF-aiA" firstAttribute="trailing" secondItem="046-Sm-77R" secondAttribute="trailingMargin" id="uLJ-Ga-b1d"/>
+                            <constraint firstItem="qlq-bs-FZJ" firstAttribute="top" secondItem="Pyf-c7-95z" secondAttribute="bottom" constant="8" id="yJI-HA-gs7"/>
                         </constraints>
                         <connections>
                             <outlet property="delegate" destination="6OF-GQ-j4h" id="vhY-ap-W7W"/>
                         </connections>
                     </glkView>
                     <connections>
+                        <outlet property="ampCutoffLabel" destination="cOv-fF-aiA" id="f0d-81-ose"/>
+                        <outlet property="ampCutoffSlider" destination="pLo-rZ-JIq" id="9ks-wY-Fal"/>
+                        <outlet property="detectedFreq" destination="qlq-bs-FZJ" id="aze-N3-S0q"/>
                         <outlet property="dopplerLabel" destination="Pyf-c7-95z" id="ggA-JZ-lG3"/>
                         <outlet property="freqLabel" destination="5cO-Lu-b04" id="NNE-lg-uep"/>
                         <outlet property="slider" destination="WQl-ba-XID" id="2b9-7I-R3L"/>

@@ -22,20 +22,26 @@
 @property (weak, nonatomic) IBOutlet UILabel *FreqLabel;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UILabel *dopplerLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ampCutoffLabel;
 
+@property (weak, nonatomic) IBOutlet UISlider *ampCutoffSlider;
 @property (strong, nonatomic) Novocaine* audioManager;
 @property (nonatomic) float phaseIncrement;
 @property (nonatomic) float frequency;
-
+@property (nonatomic) float res;
 @property (strong, nonatomic) CircularBuffer *buffer;
 @property (strong, nonatomic) SMUGraphHelper *graphHelper;
 @property (strong, nonatomic) FFTHelper *fftHelper;
 @property (strong, nonatomic)PeakFinder *finder;
+@property (weak, nonatomic) IBOutlet UILabel *detectedFreq;
+@property (nonatomic) float ampCutoff;
 
 
 @end
 
 @implementation ViewControllerMB
+@synthesize ampCutoff;
+@synthesize res;
 
 -(Novocaine*)audioManager{
     if(!_audioManager){
@@ -73,19 +79,23 @@
 
 -(PeakFinder*)finder{
     if (!_finder) {
-        float res = 44100.0/BUFFER_SIZE;
+        
         _finder = [[PeakFinder alloc] initWithFrequencyResolution:res];
-        NSLog(@"Freq Res : %f",res);
+        NSLog(@"Freq Res : %f",self.res);
     }
     return _finder;
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    self.res = 44100.0/BUFFER_SIZE;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self prepareLabel];
+    self.ampCutoff = 0;
     // Do any additional setup after loading the view.
-    [self updateFrequencyInKhz:0.2616255]; // mid C
+    [self updateFrequencyInKhz:15]; // mid C
     
     [self.graphHelper setScreenBoundsBottomHalf];
     
@@ -127,6 +137,8 @@
 -(void) prepareLabel {
     self.FreqLabel.textColor = [UIColor whiteColor];
     self.dopplerLabel.textColor = [UIColor whiteColor];
+    self.detectedFreq.textColor = [UIColor whiteColor];
+    self.ampCutoffLabel.textColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -174,11 +186,13 @@
     
     NSArray *peaks = [self.finder getFundamentalPeaksFromBuffer: fftMagnitude
                                                      withLength:BUFFER_SIZE/2
-                                                usingWindowSize:20
-                                        andPeakMagnitudeMinimum:-5
+                                                usingWindowSize:10
+                                        andPeakMagnitudeMinimum:self.ampCutoff
                                                  aboveFrequency:5000] ;
     Peak *p1 = [peaks objectAtIndex:0];
-    [self dopplerEffect:p1.frequency];
+    
+    [self dopplerEffect:p1.index*self.res];
+    self.detectedFreq.text = [NSString stringWithFormat:@"Detected F: %f",p1.index*self.res];
     
     
     [self.graphHelper update]; // update the graph
@@ -189,14 +203,17 @@
 }
 
 -(void) dopplerEffect: (float) freq {
-    float newFreq = freq / 1000; //converts to KHz
-    if (newFreq > self.slider.value) {
+    //float newFreq = freq / 1000; //converts to KHz
+    if (freq == 0.0){
+        self.dopplerLabel.text = [NSString stringWithFormat:@"Peak not found try lowering detection amplitude!"];
+    } else if (freq > self.frequency + self.res) {
         self.dopplerLabel.text = [NSString stringWithFormat:@"Doppler Effect: Gesture Towards"];
-    } else if (newFreq < self.slider.value) {
+    } else if (freq < self.frequency - self.res)  {
         self.dopplerLabel.text = [NSString stringWithFormat:@"Doppler Effect: Gesture Away"];
-    } else {
-        self.dopplerLabel.text = [NSString stringWithFormat:@"Doppler Effect: No Gesture"];
+    }else if ( self.frequency - self.res < freq < self.frequency + self.res)  {
+        self.dopplerLabel.text = [NSString stringWithFormat:@"Doppler Effect: No Gesture Detected"];
     }
+   // NSLog(@"self.freq= %f   freq= %f",self.frequency,freq);
 }
 
 -(void)updateFrequencyInKhz:(float) freqInKHz {
@@ -208,6 +225,10 @@
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     [self.graphHelper draw]; // draw the graph
 }
+- (IBAction)changedAmpCutoff:(UISlider *)sender {
+    self.ampCutoff = self.ampCutoffSlider.value;
+    self.ampCutoffLabel.text = [NSString stringWithFormat:@"Cutoff Amp: %f",self.ampCutoff];
+ }
 
 /*
 #pragma mark - Navigation
