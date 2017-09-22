@@ -22,24 +22,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6h-sw-DXJ" colorLabel="IBBuiltInLabel-Red">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freq 1:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6h-sw-DXJ" colorLabel="IBBuiltInLabel-Red">
                                 <rect key="frame" x="16" y="20" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YY-vR-s4D">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freq 2:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YY-vR-s4D">
                                 <rect key="frame" x="16" y="49" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-10" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="iPF-K1-Q8e">
+                                <rect key="frame" x="153" y="318.5" width="304" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="yi0-uS-heV"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="setAmpThrashold:" destination="vrb-Ji-x3O" eventType="valueChanged" id="gH7-6v-sRB"/>
+                                </connections>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVB-to-PgF">
+                                <rect key="frame" x="257" y="50" width="118" height="30"/>
+                                <state key="normal" title="Toggle Freq Lock"/>
+                                <connections>
+                                    <action selector="toggleFreqLock:" destination="vrb-Ji-x3O" eventType="touchUpInside" id="jbU-md-DfK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="3YY-vR-s4D" firstAttribute="leading" secondItem="09f-hW-IkQ" secondAttribute="leadingMargin" id="7ce-ih-ceK"/>
                             <constraint firstItem="3YY-vR-s4D" firstAttribute="trailing" secondItem="09f-hW-IkQ" secondAttribute="trailingMargin" id="Akr-jY-HyA"/>
+                            <constraint firstAttribute="trailing" secondItem="iPF-K1-Q8e" secondAttribute="trailing" constant="-80" id="F1O-sL-X5W"/>
+                            <constraint firstItem="bVB-to-PgF" firstAttribute="top" secondItem="JY7-Ot-62u" secondAttribute="bottom" constant="30" id="KCt-ei-pEi"/>
+                            <constraint firstItem="iPF-K1-Q8e" firstAttribute="centerY" secondItem="09f-hW-IkQ" secondAttribute="centerY" id="KXi-tV-a1t"/>
                             <constraint firstItem="N6h-sw-DXJ" firstAttribute="top" secondItem="JY7-Ot-62u" secondAttribute="bottom" id="M8o-yN-Xtm"/>
                             <constraint firstItem="N6h-sw-DXJ" firstAttribute="trailing" secondItem="09f-hW-IkQ" secondAttribute="trailingMargin" id="eO6-7q-BDp"/>
+                            <constraint firstAttribute="trailing" secondItem="bVB-to-PgF" secondAttribute="trailing" id="jRw-w2-rKJ"/>
                             <constraint firstItem="3YY-vR-s4D" firstAttribute="top" secondItem="N6h-sw-DXJ" secondAttribute="bottom" constant="8" id="pC8-cZ-gV4"/>
                             <constraint firstItem="N6h-sw-DXJ" firstAttribute="leading" secondItem="09f-hW-IkQ" secondAttribute="leadingMargin" id="rst-ri-leG"/>
                         </constraints>
@@ -50,6 +70,7 @@
                     <connections>
                         <outlet property="Freq2" destination="3YY-vR-s4D" id="373-eo-rzn"/>
                         <outlet property="FreqLabel" destination="N6h-sw-DXJ" id="bUF-la-L5E"/>
+                        <outlet property="ampSlider" destination="iPF-K1-Q8e" id="q7q-y0-NVC"/>
                     </connections>
                 </glkViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q6J-Ab-sMD" userLabel="First Responder" sceneMemberID="firstResponder"/>
