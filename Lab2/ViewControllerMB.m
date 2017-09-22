@@ -7,21 +7,206 @@
 //
 
 #import "ViewControllerMB.h"
+#import "Novocaine.h"
+#import "CircularBuffer.h"
+#import "SMUGraphHelper.h"
+#import "FFTHelper.h"
+#import "PeakFinder.h"
+
+#define DISPLAY_SIZE 8000
+#define BUFFER_SIZE 16384
+#define READ_SIZE 1024*4
+
 
 @interface ViewControllerMB ()
+@property (weak, nonatomic) IBOutlet UILabel *FreqLabel;
+@property (weak, nonatomic) IBOutlet UISlider *slider;
+@property (weak, nonatomic) IBOutlet UILabel *dopplerLabel;
+
+@property (strong, nonatomic) Novocaine* audioManager;
+@property (nonatomic) float phaseIncrement;
+@property (nonatomic) float frequency;
+
+@property (strong, nonatomic) CircularBuffer *buffer;
+@property (strong, nonatomic) SMUGraphHelper *graphHelper;
+@property (strong, nonatomic) FFTHelper *fftHelper;
+@property (strong, nonatomic)PeakFinder *finder;
+
 
 @end
 
 @implementation ViewControllerMB
 
+-(Novocaine*)audioManager{
+    if(!_audioManager){
+        _audioManager = [Novocaine audioManager];
+    }
+    return _audioManager;
+}
+
+-(CircularBuffer*)buffer{
+    if(!_buffer){
+        _buffer = [[CircularBuffer alloc]initWithNumChannels:1 andBufferSize:BUFFER_SIZE];
+    }
+    return _buffer;
+}
+
+-(SMUGraphHelper*)graphHelper{
+    if(!_graphHelper){
+        _graphHelper = [[SMUGraphHelper alloc]initWithController:self
+                                        preferredFramesPerSecond:15
+                                                       numGraphs:2
+                                                       plotStyle:PlotStyleSeparated
+                                               maxPointsPerGraph:DISPLAY_SIZE];
+    }
+    return _graphHelper;
+}
+
+-(FFTHelper*)fftHelper{
+    if(!_fftHelper){
+        _fftHelper = [[FFTHelper alloc]initWithFFTSize:BUFFER_SIZE];
+    }
+    
+    return _fftHelper;
+}
+
+
+-(PeakFinder*)finder{
+    if (!_finder) {
+        float res = 44100.0/BUFFER_SIZE;
+        _finder = [[PeakFinder alloc] initWithFrequencyResolution:res];
+        NSLog(@"Freq Res : %f",res);
+    }
+    return _finder;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self prepareLabel];
     // Do any additional setup after loading the view.
+    [self updateFrequencyInKhz:0.2616255]; // mid C
+    
+    [self.graphHelper setScreenBoundsBottomHalf];
+    
+    __block ViewControllerMB * __weak  wSelf = self;
+    [self.audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels){
+        [wSelf.buffer addNewFloatData:data withNumSamples:numFrames];
+    }];
+
+    
+    self.phaseIncrement = 2*M_PI*self.frequency/self.audioManager.samplingRate;
+    __block float phase = 0.0;
+    [self.audioManager setOutputBlock:^(float* data, UInt32 numFrames, UInt32 numChannels){
+        for(int i=0;i<numFrames;i++){
+            for(int j=0;j<numChannels;j++){
+                data[i*numChannels+j] = sin(phase);
+            }
+            phase += self.phaseIncrement;
+            
+            if(phase>2*M_PI){
+                phase -= 2*M_PI;
+            }
+        }
+        
+        
+    }];
+    
+    [self.audioManager play];
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
+    
+    
+    [self.audioManager setOutputBlock: nil];
+    
+    [self.audioManager pause];
+}
+
+-(void) prepareLabel {
+    self.FreqLabel.textColor = [UIColor whiteColor];
+    self.dopplerLabel.textColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)sliderDidSlide:(UISlider *)sender {
+    
+    [self updateFrequencyInKhz:sender.value];
+}
+
+- (void)update{
+    // just plot the audio stream
+    
+    // get audio stream data
+    float* arrayData = malloc(sizeof(float)*BUFFER_SIZE);
+    float* fftMagnitude = malloc(sizeof(float)*BUFFER_SIZE/2);
+    
+    [self.buffer fetchFreshData:arrayData withNumSamples:READ_SIZE];
+    
+    for (int i=READ_SIZE; i < BUFFER_SIZE; i++){
+        arrayData[i] = 0.0;
+    }
+    
+    
+    //send off for graphing
+    [self.graphHelper setGraphData:arrayData
+                    withDataLength:DISPLAY_SIZE
+                     forGraphIndex:0];
+    
+    // take forward FFT
+    [self.fftHelper performForwardFFTWithData:arrayData
+                   andCopydBMagnitudeToBuffer:fftMagnitude];
+    
+    
+    
+    // graph the FFT Data
+    [self.graphHelper setGraphData:fftMagnitude
+                    withDataLength:DISPLAY_SIZE
+                     forGraphIndex:1
+                 withNormalization:64.0
+                     withZeroValue:-60];
+    
+    
+    
+    NSArray *peaks = [self.finder getFundamentalPeaksFromBuffer: fftMagnitude
+                                                     withLength:BUFFER_SIZE/2
+                                                usingWindowSize:20
+                                        andPeakMagnitudeMinimum:-5
+                                                 aboveFrequency:5000] ;
+    Peak *p1 = [peaks objectAtIndex:0];
+    [self dopplerEffect:p1.frequency];
+    
+    
+    [self.graphHelper update]; // update the graph
+    free(arrayData);
+    free(fftMagnitude);
+    
+    
+}
+
+-(void) dopplerEffect: (float) freq {
+    float newFreq = freq / 1000; //converts to KHz
+    if (newFreq > self.slider.value) {
+        self.dopplerLabel.text = [NSString stringWithFormat:@"Doppler Effect: Gesture Towards"];
+    } else if (newFreq < self.slider.value) {
+        self.dopplerLabel.text = [NSString stringWithFormat:@"Doppler Effect: Gesture Away"];
+    } else {
+        self.dopplerLabel.text = [NSString stringWithFormat:@"Doppler Effect: No Gesture"];
+    }
+}
+
+-(void)updateFrequencyInKhz:(float) freqInKHz {
+    self.frequency = freqInKHz*1000.0;
+    self.FreqLabel.text = [NSString stringWithFormat:@"%.4f kHz",freqInKHz];
+    self.phaseIncrement = 2*M_PI*self.frequency/self.audioManager.samplingRate;
+}
+
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
+    [self.graphHelper draw]; // draw the graph
 }
 
 /*

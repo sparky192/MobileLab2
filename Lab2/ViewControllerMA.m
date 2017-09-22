@@ -22,8 +22,8 @@
 @property (strong, nonatomic) Novocaine *audioManager;
 @property (weak, nonatomic) IBOutlet UILabel *FreqLabel;
 @property (weak, nonatomic) IBOutlet UILabel *Freq2;
-@property (strong, nonatomic) CircularBuffer *buffer;
 @property (weak, nonatomic) IBOutlet UISlider *ampSlider;
+@property (strong, nonatomic) CircularBuffer *buffer;
 @property (strong, nonatomic) SMUGraphHelper *graphHelper;
 @property (strong, nonatomic) FFTHelper *fftHelper;
 @property(strong, nonatomic)PeakFinder *finder;
@@ -113,16 +113,11 @@
     // get audio stream data
     float* arrayData = malloc(sizeof(float)*BUFFER_SIZE);
     float* fftMagnitude = malloc(sizeof(float)*BUFFER_SIZE/2);
-//    float* arrayDataPadded = malloc(sizeof(float)*PADDED_SIZE);
     
     [self.buffer fetchFreshData:arrayData withNumSamples:READ_SIZE];
     
     for (int i=READ_SIZE; i < BUFFER_SIZE; i++){
-//        if (i < BUFFER_SIZE)
-//            arrayDataPadded[i]  = arrayData[i];
-//        else{
             arrayData[i] = 0.0;
-//        }
     }
     
     
@@ -153,8 +148,6 @@
     Peak *p1 = [peaks objectAtIndex:0];
     
     
-    //float freq = [[peaks objectAtIndex:0] ge];
-  //  float x = p1.frequency*0.90909;
     
     if(!lock){
        self.FreqLabel.text = [NSString stringWithFormat:@"F1: %f" , p1.frequency];
@@ -185,8 +178,13 @@
     [self.graphHelper update]; // update the graph
     free(arrayData);
     free(fftMagnitude);
-    //free(arrayDataPadded);
+
     
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
+    [self.audioManager pause];
 }
 
 //  override the GLKView draw function, from OpenGLES
