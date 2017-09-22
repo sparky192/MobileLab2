@@ -109,11 +109,11 @@
                         </connections>
                     </glkView>
                     <connections>
+                        <outlet property="FreqLabel" destination="5cO-Lu-b04" id="lcc-ur-9PD"/>
                         <outlet property="ampCutoffLabel" destination="cOv-fF-aiA" id="f0d-81-ose"/>
                         <outlet property="ampCutoffSlider" destination="pLo-rZ-JIq" id="9ks-wY-Fal"/>
                         <outlet property="detectedFreq" destination="qlq-bs-FZJ" id="aze-N3-S0q"/>
                         <outlet property="dopplerLabel" destination="Pyf-c7-95z" id="ggA-JZ-lG3"/>
-                        <outlet property="freqLabel" destination="5cO-Lu-b04" id="NNE-lg-uep"/>
                         <outlet property="slider" destination="WQl-ba-XID" id="2b9-7I-R3L"/>
                     </connections>
                 </glkViewController>

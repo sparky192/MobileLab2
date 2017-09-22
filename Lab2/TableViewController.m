@@ -36,7 +36,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 3;
 }
 
 
@@ -44,9 +44,10 @@
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     if (indexPath.row == 0)
         cell = [tableView dequeueReusableCellWithIdentifier:@"Mod A" forIndexPath:indexPath];
-    else
+    else if (indexPath.row == 1)
         cell =  [tableView dequeueReusableCellWithIdentifier:@"Mod B" forIndexPath:indexPath];
-    
+    else
+        cell = [tableView dequeueReusableCellWithIdentifier:@"KeyId" forIndexPath:indexPath];
     // Configure the cell...
     
     return cell;

@@ -28,6 +28,8 @@
 		9BA03A341F72B160000C0509 /* FFTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA03A291F72B160000C0509 /* FFTHelper.m */; };
 		9BA03A351F72B160000C0509 /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA03A2B1F72B160000C0509 /* Novocaine.m */; };
 		9BA03A361F72B160000C0509 /* PeakFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA03A2D1F72B160000C0509 /* PeakFinder.m */; };
+		9BCD668F1F7578D60040A357 /* KeyIdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCD668E1F7578D60040A357 /* KeyIdViewController.m */; };
+		9BCD66921F75798A0040A357 /* KeyID.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BCD66901F75798A0040A357 /* KeyID.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,9 @@
 		9BA03A2B1F72B160000C0509 /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Novocaine.m; sourceTree = "<group>"; };
 		9BA03A2C1F72B160000C0509 /* PeakFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeakFinder.h; sourceTree = "<group>"; };
 		9BA03A2D1F72B160000C0509 /* PeakFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeakFinder.m; sourceTree = "<group>"; };
+		9BCD668D1F7578D60040A357 /* KeyIdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyIdViewController.h; sourceTree = "<group>"; };
+		9BCD668E1F7578D60040A357 /* KeyIdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyIdViewController.m; sourceTree = "<group>"; };
+		9BCD66911F75798A0040A357 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Lab2/Base.lproj/KeyID.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,8 +166,11 @@
 				9BA03A2D1F72B160000C0509 /* PeakFinder.m */,
 				9B05E96F1F71738600032F19 /* Mod A.storyboard */,
 				9B05E9721F71739600032F19 /* Mod B.storyboard */,
+				9BCD66901F75798A0040A357 /* KeyID.storyboard */,
 				9B05E9691F7170A200032F19 /* TableViewController.h */,
 				9B05E96A1F7170A200032F19 /* TableViewController.m */,
+				9BCD668D1F7578D60040A357 /* KeyIdViewController.h */,
+				9BCD668E1F7578D60040A357 /* KeyIdViewController.m */,
 				9B05E9421F716ECD00032F19 /* Assets.xcassets */,
 				9B05E9441F716ECD00032F19 /* LaunchScreen.storyboard */,
 				9B05E9471F716ECD00032F19 /* Info.plist */,
@@ -307,6 +315,7 @@
 				9B05E9711F71738600032F19 /* Mod A.storyboard in Resources */,
 				9B05E9731F71739600032F19 /* Mod B.storyboard in Resources */,
 				9B05E9461F716ECD00032F19 /* LaunchScreen.storyboard in Resources */,
+				9BCD66921F75798A0040A357 /* KeyID.storyboard in Resources */,
 				9B05E9431F716ECD00032F19 /* Assets.xcassets in Resources */,
 				9B05E9411F716ECD00032F19 /* Main.storyboard in Resources */,
 			);
@@ -336,6 +345,7 @@
 				9B33CFB71F72DB6300EF88A0 /* SMUGraphHelper.h in Sources */,
 				9B33CFB81F72DB6300EF88A0 /* SMUGraphHelper.m in Sources */,
 				9BA03A361F72B160000C0509 /* PeakFinder.m in Sources */,
+				9BCD668F1F7578D60040A357 /* KeyIdViewController.m in Sources */,
 				9BA03A311F72B160000C0509 /* CircularBuffer.m in Sources */,
 				9BA03A321F72B160000C0509 /* CubicSpline.m in Sources */,
 				9BA03A341F72B160000C0509 /* FFTHelper.m in Sources */,
@@ -404,6 +414,14 @@
 				9B05E9701F71738600032F19 /* Base */,
 			);
 			name = "Mod A.storyboard";
+			sourceTree = "<group>";
+		};
+		9BCD66901F75798A0040A357 /* KeyID.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9BCD66911F75798A0040A357 /* Base */,
+			);
+			name = KeyID.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
